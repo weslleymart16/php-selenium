@@ -1,0 +1,6 @@
+Pagina Inicial
+ [x] Pagina inicial nao logada deve ser listagem de series
+
+Register
+ [x] Quando registrar novo usuario redirecionar para lista de series
+

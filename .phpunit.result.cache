@@ -1,0 +1,1 @@
+{"version":1,"defects":{"PaginaInicialTest::testPaginaInicialNaoLogadaDeveSerListagemDeSeries":4,"RegisterTest::testQuandoRegistrarNovoUsuarioRedirecionarParaListaDeSeries":3},"times":{"PaginaInicialTest::testPaginaInicialNaoLogadaDeveSerListagemDeSeries":19.288,"RegisterTest::testQuandoRegistrarNovoUsuarioRedirecionarParaListaDeSeries":2.446}}
