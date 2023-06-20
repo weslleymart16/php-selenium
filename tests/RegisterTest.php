@@ -6,34 +6,46 @@ use Facebook\WebDriver\Remote\RemoteWebElement;
 use Facebook\WebDriver\WebDriverBy;
 use PHPUnit\Framework\TestCase;
 
-class RegisterTest extends TestCase {
+class RegisterTest extends TestCase
+{
 
-     public function testQuandoRegistrarNovoUsuarioRedirecionarParaListaDeSeries() {
+    private static $driver;
 
-        // ARRANGE
+    public static function setUpBeforeClass(): void
+    {
         $host = 'http://localhost:4444';
-        $driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
-        $driver->get('http://localhost:8080/novo-usuario');
+        self::$driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
+    }
 
+    protected function setUp(): void
+    { 
+        self::$driver->get('http://localhost:8080/novo-usuario');
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        self::$driver->quit();
+    }
+
+    public function testQuandoRegistrarNovoUsuarioRedirecionarParaListaDeSeries()
+    {
         // ACT
-        $inputName = $driver->findElement(WebDriverBy::id('name'));
-        $inputEmail = $driver->findElement(WebDriverBy::id('email'));
-        $inputPassword = $driver->findElement(WebDriverBy::id('password'));
-        $buttomSubmit = $driver->findElement(WebDriverBy::cssSelector('button[type=submit]'));
+        $inputName = self::$driver->findElement(WebDriverBy::id('name'));
+        $inputEmail = self::$driver->findElement(WebDriverBy::id('email'));
+        $inputPassword = self::$driver->findElement(WebDriverBy::id('password'));
+        $buttomSubmit = self::$driver->findElement(WebDriverBy::cssSelector('button[type=submit]'));
 
         $inputName->sendKeys('Pituco Martins');
-        $inputEmail->sendKeys('pituco@gmail.com');
+        $inputEmail->sendKeys(md5(time()) . '@gmail.com');
         $inputPassword->sendKeys('123');
 
         $buttomSubmit->submit();
 
         // ASSERT
-        self::assertSame('http://localhost:8080/series', $driver->getCurrentURL());
+        self::assertSame('http://localhost:8080/series', self::$driver->getCurrentURL());
         self::assertInstanceOf(
-            RemoteWebElement::class, 
-            $driver->findElement(WebDriverBy::linkText('Sair'))
+            RemoteWebElement::class,
+            self::$driver->findElement(WebDriverBy::linkText('Sair'))
         );
-
-     }
-
+    }
 }

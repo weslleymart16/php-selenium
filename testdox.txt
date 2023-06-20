@@ -1,3 +1,6 @@
+Cadastro Series
+ [x] Cadastrar nova serie deve redirecionar para lista
+
 Pagina Inicial
  [x] Pagina inicial nao logada deve ser listagem de series
 
