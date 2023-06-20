@@ -2,5 +2,10 @@
     "require-dev": {
         "php-webdriver/webdriver": "^1.8",
         "phpunit/phpunit": "^9.2"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Alura\\E2E\\Tests\\": "tests/"
+        }
     }
 }
